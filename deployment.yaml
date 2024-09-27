@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube-test-deploy
+spec:
+  replicas: 3  # 어플리케이션 인스턴스 개수
+  selector:
+    matchLabels:
+      app: kube-test
+  template:
+    metadata:
+      labels:
+        app: kube-test
+    spec:
+      containers:
+        - name: kube-test
+          image: kube_test:0.0.1
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: IfNotPresent
